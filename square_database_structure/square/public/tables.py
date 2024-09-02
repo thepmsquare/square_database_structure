@@ -17,3 +17,11 @@ class Test(Base):
         Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
     )
     test_text = Column(String, nullable=False)
+
+class App(Base):
+    __tablename__ = "app"
+
+    app_id = Column(
+        Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
+    )
+    app_name = Column(String, nullable=False, unique=True)
