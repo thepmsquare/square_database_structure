@@ -12,10 +12,7 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.sql import func
 
-from square_database_structure.square.authentication.enums import (
-    UserAccountStatusEnum,
-    UserLogEventEnum,
-)
+from square_database_structure.square.public.tables import App
 
 local_string_database_name = "square"
 
@@ -36,11 +33,6 @@ class User(Base):
         unique=True,
         server_default=text("gen_random_uuid()"),
     )
-    user_account_status = Column(
-        Enum(UserAccountStatusEnum, schema=local_string_schema_name),
-        nullable=False,
-        server_default=UserAccountStatusEnum.ACTIVE.value,
-    )
 
 
 class UserCredential(Base):
@@ -59,42 +51,22 @@ class UserCredential(Base):
     user_credential_hashed_password = Column(String, nullable=False)
 
 
-class UserProfile(Base):
-    __tablename__ = "user_profile"
+class UserApp(Base):
+    __tablename__ = "user_app"
 
-    user_profile_id = Column(
+    user_app_id = Column(
+        Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    app_id = Column(
         Integer,
-        primary_key=True,
-        nullable=False,
-        unique=True,
-        autoincrement=True,
-    )
-    user_id = Column(
-        UUID,
-        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
-        nullable=False,
-        unique=True,
-    )
-
-
-class UserLog(Base):
-    __tablename__ = "user_log"
-
-    user_log_id = Column(
-        Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
-    )
-    user_id = Column(
-        UUID,
-        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        ForeignKey(App.app_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
-    user_log_datetime = Column(
-        DateTime(timezone=True), nullable=False, server_default=func.now()
-    )
-    user_log_event = Column(
-        Enum(UserLogEventEnum, schema=local_string_schema_name), nullable=False
-    )
-
 
 class UserSession(Base):
     __tablename__ = "user_session"
@@ -102,9 +74,9 @@ class UserSession(Base):
     user_session_id = Column(
         Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
     )
-    user_id = Column(
-        UUID,
-        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+    user_app_id = Column(
+        Integer,
+        ForeignKey(UserApp.user_app_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
     user_session_refresh_token = Column(
