@@ -36,6 +36,12 @@ pip install square_database_structure
 
 ## changelog
 
+### v1.0.1
+
+- add main.py file to have explicit mapping and ordering for schemas to be created.
+- move database and schema names to __init__.
+- add app table in public, change user, remove profile and add user app and remove enums.
+
 ### v1.0.0
 
 - initial commit
