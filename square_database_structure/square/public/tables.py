@@ -18,6 +18,7 @@ class Test(Base):
     )
     test_text = Column(String, nullable=False)
 
+
 class App(Base):
     __tablename__ = "app"
 

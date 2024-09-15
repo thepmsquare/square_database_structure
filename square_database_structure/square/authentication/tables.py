@@ -3,14 +3,12 @@ from sqlalchemy import (
     Integer,
     MetaData,
     DateTime,
-    Enum,
     text,
     String,
     ForeignKey,
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
-from sqlalchemy.sql import func
 
 from square_database_structure.square.public.tables import App
 
@@ -67,6 +65,7 @@ class UserApp(Base):
         ForeignKey(App.app_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
+
 
 class UserSession(Base):
     __tablename__ = "user_session"
