@@ -36,6 +36,10 @@ pip install square_database_structure
 
 ## changelog
 
+### v1.0.2
+
+- replace file_purpose with app_id in file_storage.
+
 ### v1.0.1
 
 - add main.py file to have explicit mapping and ordering for schemas to be created.
