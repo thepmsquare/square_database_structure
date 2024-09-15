@@ -1,8 +1,18 @@
-from sqlalchemy import Boolean, Column, DateTime, Integer, String, text, MetaData
+from sqlalchemy import (
+    Boolean,
+    Column,
+    DateTime,
+    Integer,
+    String,
+    text,
+    MetaData,
+    ForeignKey,
+)
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.sql import func
 
 from square_database_structure.square.file_storage import global_string_schema_name
+from square_database_structure.square.public.tables import App
 
 Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
 
@@ -27,7 +37,11 @@ class File(Base):
     file_system_file_name_with_extension = Column(String, nullable=False)
     file_system_relative_path = Column(String, server_default="", nullable=False)
     file_storage_token = Column(String, nullable=False, unique=True, index=True)
-    file_purpose = Column(String, nullable=True, unique=False, index=True)
+    app_id = Column(
+        Integer,
+        ForeignKey(App.app_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=True,
+    )
     file_is_deleted = Column(
         Boolean, nullable=False, index=True, server_default=text("false")
     )
