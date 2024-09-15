@@ -4,7 +4,7 @@ package_name = "square_database_structure"
 
 setup(
     name=package_name,
-    version="1.0.1",
+    version="1.0.2",
     packages=find_packages(),
     package_data={
         package_name: [],
