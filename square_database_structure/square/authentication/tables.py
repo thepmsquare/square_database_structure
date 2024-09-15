@@ -10,13 +10,10 @@ from sqlalchemy import (
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
 
+from square_database_structure.square.authentication import global_string_schema_name
 from square_database_structure.square.public.tables import App
 
-local_string_database_name = "square"
-
-local_string_schema_name = "authentication"
-
-Base = declarative_base(metadata=MetaData(schema=local_string_schema_name))
+Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
 
 data_to_insert = []
 

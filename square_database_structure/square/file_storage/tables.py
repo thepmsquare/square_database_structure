@@ -2,11 +2,9 @@ from sqlalchemy import Boolean, Column, DateTime, Integer, String, text, MetaDat
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.sql import func
 
-local_string_database_name = "square"
+from square_database_structure.square.file_storage import global_string_schema_name
 
-local_string_schema_name = "file_storage"
-
-Base = declarative_base(metadata=MetaData(schema=local_string_schema_name))
+Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
 
 data_to_insert = []
 
