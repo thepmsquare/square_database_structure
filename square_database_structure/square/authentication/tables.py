@@ -56,11 +56,13 @@ class UserApp(Base):
         UUID,
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
+        primary_key=True,
     )
     app_id = Column(
         Integer,
         ForeignKey(App.app_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
+        primary_key=True,
     )
 
 
