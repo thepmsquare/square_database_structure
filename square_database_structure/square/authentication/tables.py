@@ -49,9 +49,6 @@ class UserCredential(Base):
 class UserApp(Base):
     __tablename__ = "user_app"
 
-    user_app_id = Column(
-        Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
-    )
     user_id = Column(
         UUID,
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
@@ -72,9 +69,14 @@ class UserSession(Base):
     user_session_id = Column(
         Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
     )
-    user_app_id = Column(
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    app_id = Column(
         Integer,
-        ForeignKey(UserApp.user_app_id, ondelete="CASCADE", onupdate="CASCADE"),
+        ForeignKey(App.app_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
     user_session_refresh_token = Column(
