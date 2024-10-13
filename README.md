@@ -36,6 +36,12 @@ pip install square_database_structure
 
 ## changelog
 
+### v1.0.3
+
+- change structure of square->authentication->UserApp and square->authentication->UserSession (due to complications with
+  Composite Key).
+- change default data in square->public->app.
+
 ### v1.0.2
 
 - replace file_purpose with app_id in file_storage.
@@ -43,11 +49,11 @@ pip install square_database_structure
 ### v1.0.1
 
 - add main.py file to have explicit mapping and ordering for schemas to be created.
-- move database and schema names to __init__.
+- move database and schema names to ```__init__.py```.
 - add app table in public, change user, remove profile and add user app and remove enums.
 
 ### v1.0.0
 
-- initial commit
+- initial commit.
 
 ## Feedback is appreciated. Thank you!
