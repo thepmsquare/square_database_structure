@@ -28,4 +28,4 @@ class App(Base):
 
 data_to_insert.append(App(app_name="square_admin"))
 data_to_insert.append(App(app_name="square_wallet"))
-data_to_insert.append(App(app_name="square_todo"))
+data_to_insert.append(App(app_name="ttthree"))
