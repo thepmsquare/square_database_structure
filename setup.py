@@ -11,6 +11,7 @@ setup(
     },
     install_requires=[
         "sqlalchemy>=2.0.23",
+        "psycopg2-binary>=2.9.9",
     ],
     author="thePmSquare",
     author_email="thepmsquare@gmail.com",
