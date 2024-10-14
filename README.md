@@ -32,15 +32,16 @@ pip install square_database_structure
 
 This module organizes database schemas in a standardized folder structure where each top-level folder represents a
 database, and subfolders within it represent schemas. All mandatory components, such as ```__init__.py``` and tables.py,
-need
-to follow this structure.
-Folder Structure
+need to follow this structure.
+
+### Folder Structure
 
 Here’s how you should organize your project when using this module:
 
 ```
 square_database_structure/
 ├───main.py                    # Global definition file (mandatory)
+├───create_database.py         # Global database creation file (mandatory)
 └───database1/                 # Each folder corresponds to a separate database
     ├───__init__.py            # Mandatory: Contains the global name for the database
     └───schema1/               # Each subfolder corresponds to a schema within the database
@@ -121,7 +122,7 @@ data_to_insert.append(App(app_name="example_app"))
 The main.py file is mandatory and contains a global list that maps databases to schemas and their corresponding table
 definitions. This list is manually created by the user (for now).
 
-Example main.py:
+#### Example main.py:
 
 ```python
 # main.py
@@ -150,11 +151,33 @@ global_list_create = [
 This file centralizes the definition of each database and schema, including the associated Base and data_to_insert for
 table definitions.
 
+### Creating Tables
+
+Once you have defined your databases, schemas, and tables, you can create them in your PostgreSQL database by using the
+`create_database_and_tables` function.
+
+```python
+from square_database_structure import create_database_and_tables
+
+# Define the database connection details
+db_username = "your_username"
+db_password = "your_password"
+db_ip = "localhost"
+db_port = 5432
+
+# Call the function to create the database and tables
+create_database_and_tables(db_username, db_password, db_ip, db_port)
+```
+
 ## env
 
 - python>=3.12.0
 
 ## changelog
+
+### v1.1.0
+
+- add database, schema and table creation logic (from square database) (removed logs).
 
 ### v1.0.3
 
