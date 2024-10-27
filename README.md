@@ -46,7 +46,9 @@ square_database_structure/
     ├───__init__.py            # Mandatory: Contains the global name for the database
     └───schema1/               # Each subfolder corresponds to a schema within the database
         ├───__init__.py        # Mandatory: Contains the global name for the schema
-        └───tables.py          # Mandatory: Defines tables and optional data for insertion
+        ├───data.py            # Mandatory: Contains the data for insertion for the schema
+        ├───enums.py           # Optional: Defines Enums to be used in the schema
+        └───tables.py          # Mandatory: Defines tables of the schema
 ```
 
 - Top-level folders: Represent individual databases (e.g., database1).
@@ -54,6 +56,7 @@ square_database_structure/
 - Mandatory files:
     - ```__init__.py``` (both at the database and schema level).
     - tables.py within each schema.
+    - data.py within each schema.
 
 ### Defining Database and Schema Names in ```__init__.py```
 
@@ -83,7 +86,6 @@ Each schema folder must contain a tables.py file where:
 
 - You must declare a Base object tied to the schema.
 - You can define table classes, extending the Base object.
-- You must declare a data_to_insert list to store optional data that may be inserted into the schema's tables.
 
 #### Example tables.py:
 
@@ -98,12 +100,8 @@ from database1.schema1 import global_string_schema_name
 
 Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
 
-# 2. Mandatory: Initialize a list for optional data insertion
 
-data_to_insert = []
-
-
-# 3. Optional: Define table classes by extending Base
+# 2. Optional: Define table classes by extending Base
 
 class App(Base):
     __tablename__ = 'app'
@@ -111,9 +109,18 @@ class App(Base):
 
 id = Column(Integer, primary_key=True)
 app_name = Column(String, nullable=False)
+```
 
+### Defining data in data.py
+
+- You must declare a data_to_insert list to store optional data that may be inserted into the schema's tables.
+
+```python
+from database1.schema1.tables import App
+
+# 1. Mandatory: Initialize a list for optional data insertion
+data_to_insert = []
 # Optional: Append data to be inserted into the table
-
 data_to_insert.append(App(app_name="example_app"))
 ```
 
@@ -174,6 +181,11 @@ create_database_and_tables(db_username, db_password, db_ip, db_port)
 - python>=3.12.0
 
 ## changelog
+
+### v1.2.0
+
+- move data to separate file for each schema.
+- add enums file for each schema.
 
 ### v1.1.0
 

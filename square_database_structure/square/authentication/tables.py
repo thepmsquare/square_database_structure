@@ -6,16 +6,16 @@ from sqlalchemy import (
     text,
     String,
     ForeignKey,
+    Enum,
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
 
 from square_database_structure.square.authentication import global_string_schema_name
+from square_database_structure.square.authentication.enums import UserStatusEnum
 from square_database_structure.square.public.tables import App
 
 Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
-
-data_to_insert = []
 
 
 class User(Base):
@@ -27,6 +27,11 @@ class User(Base):
         nullable=False,
         unique=True,
         server_default=text("gen_random_uuid()"),
+    )
+    user_status = Column(
+        Enum(UserStatusEnum, schema=global_string_schema_name),
+        nullable=False,
+        server_default=UserStatusEnum.ACTIVE.value,
     )
 
 

@@ -4,23 +4,29 @@ from square_database_structure.square import (
 from square_database_structure.square.authentication import (
     global_string_schema_name as local_string_square_authentication_schema_name,
 )
+from square_database_structure.square.authentication.data import (
+    data_to_insert as local_list_square_authentication_data_to_insert,
+)
 from square_database_structure.square.authentication.tables import (
     Base as SquareAuthenticationBase,
-    data_to_insert as local_list_square_authentication_data_to_insert,
 )
 from square_database_structure.square.file_storage import (
     global_string_schema_name as local_string_square_file_storage_schema_name,
 )
+from square_database_structure.square.file_storage.data import (
+    data_to_insert as local_list_square_file_storage_data_to_insert,
+)
 from square_database_structure.square.file_storage.tables import (
     Base as SquareFileStorageBase,
-    data_to_insert as local_list_square_file_storage_data_to_insert,
 )
 from square_database_structure.square.public import (
     global_string_schema_name as local_string_square_public_schema_name,
 )
+from square_database_structure.square.public.data import (
+    data_to_insert as local_list_square_public_data_to_insert,
+)
 from square_database_structure.square.public.tables import (
     Base as SquarePublicBase,
-    data_to_insert as local_list_square_public_data_to_insert,
 )
 
 global_list_create = [

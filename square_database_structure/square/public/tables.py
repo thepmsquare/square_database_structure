@@ -5,8 +5,6 @@ from square_database_structure.square.public import global_string_schema_name
 
 Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
 
-data_to_insert = []
-
 
 class Test(Base):
     __tablename__ = "test"
@@ -24,8 +22,3 @@ class App(Base):
         Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
     )
     app_name = Column(String, nullable=False, unique=True)
-
-
-data_to_insert.append(App(app_name="square_admin"))
-data_to_insert.append(App(app_name="square_wallet"))
-data_to_insert.append(App(app_name="ttthree"))

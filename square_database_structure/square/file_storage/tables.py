@@ -16,8 +16,6 @@ from square_database_structure.square.public.tables import App
 
 Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
 
-data_to_insert = []
-
 
 class File(Base):
     __tablename__ = "file"
