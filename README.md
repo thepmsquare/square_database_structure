@@ -177,8 +177,10 @@ definitions. This list is manually created by the user (for now).
 # main.py
 
 from database1.schema1 import global_string_schema_name as schema1_name
-from database1.schema1.tables import Base as Schema1Base, data_to_insert as schema1_data
-
+from database1.schema1.tables import Base as Schema1Base
+from database1.schema1.data import data_to_insert as schema1_data
+from database1.schema1.stored_procedures_and_functions import (
+    stored_procedures_and_functions as schema1_stored_procedures_and_functions)
 from database1 import global_string_database_name as database1_name
 
 # Global list that maps databases and schemas
@@ -191,6 +193,8 @@ global_list_create = [
                 "schema": schema1_name,  # Mandatory: Schema name
                 "base": Schema1Base,  # Mandatory: Base for this schema
                 "data_to_insert": schema1_data,  # Mandatory: Data to insert (even if empty)
+                "stored_procedures_and_functions": schema1_stored_procedures_and_functions,
+                # Mandatory: stored procedures and functions (even if empty)
             },
         ],
     }
