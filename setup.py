@@ -4,10 +4,10 @@ package_name = "square_database_structure"
 
 setup(
     name=package_name,
-    version="1.2.0",
+    version="1.3.0",
     packages=find_packages(),
     package_data={
-        package_name: [],
+        package_name: ["**/**/stored_procedures_and_functions/*.sql"],
     },
     install_requires=[
         "sqlalchemy>=2.0.23",

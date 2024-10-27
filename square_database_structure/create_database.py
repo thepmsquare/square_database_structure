@@ -6,7 +6,7 @@ from square_database_structure.main import global_list_create
 
 
 def create_database_and_tables(
-    db_username: str, db_password: str, db_ip: str, db_port: int
+        db_username: str, db_password: str, db_ip: str, db_port: int
 ) -> None:
     try:
         local_list_create = global_list_create
@@ -40,7 +40,7 @@ def create_database_and_tables(
                     local_str_schema_name = local_dict_schema["schema"]
                     # Create schema if not exists
                     if not database_engine.dialect.has_schema(
-                        database_connection, local_str_schema_name
+                            database_connection, local_str_schema_name
                     ):
                         database_connection.execute(text("commit"))
                         database_connection.execute(
@@ -80,6 +80,15 @@ def create_database_and_tables(
                         session.rollback()
                         session.close()
                         raise
-
+                    # create stored procedures
+                    stored_procedures_and_functions = local_dict_schema[
+                        "stored_procedures_and_functions"
+                    ]
+                    for (
+                            stored_procedures_and_function
+                    ) in stored_procedures_and_functions:
+                        database_connection.execute(
+                            text(stored_procedures_and_function)
+                        )
     except Exception:
         raise

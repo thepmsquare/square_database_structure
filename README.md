@@ -32,7 +32,7 @@ pip install square_database_structure
 
 This module organizes database schemas in a standardized folder structure where each top-level folder represents a
 database, and subfolders within it represent schemas. All mandatory components, such as ```__init__.py``` and tables.py,
-need to follow this structure.
+data.py, stored_procedures_and_functions need to follow this structure.
 
 ### Folder Structure
 
@@ -40,15 +40,18 @@ Here’s how you should organize your project when using this module:
 
 ```
 square_database_structure/
-├───main.py                    # Global definition file (mandatory)
-├───create_database.py         # Global database creation file (mandatory)
-└───database1/                 # Each folder corresponds to a separate database
-    ├───__init__.py            # Mandatory: Contains the global name for the database
-    └───schema1/               # Each subfolder corresponds to a schema within the database
-        ├───__init__.py        # Mandatory: Contains the global name for the schema
-        ├───data.py            # Mandatory: Contains the data for insertion for the schema
-        ├───enums.py           # Optional: Defines Enums to be used in the schema
-        └───tables.py          # Mandatory: Defines tables of the schema
+├───main.py                                           # Global definition file (mandatory)
+├───create_database.py                                # Global database creation file (mandatory)
+└───database1/                                        # Each folder corresponds to a separate database
+    ├───__init__.py                                   # Contains the global name for the database (mandatory)
+    └───schema1/                                      # Each subfolder corresponds to a schema within the database
+        ├───__init__.py                               # Contains the global name for the schema (mandatory)
+        ├───data.py                                   # Contains the data for insertion for the schema (mandatory) 
+        ├───enums.py                                  # Defines Enums to be used in the schema (optional)
+        ├───tables.py                                 # Defines tables of the schema (mandatory)
+        └───stored_procedures_and_functions/          # Contains stored procedures and functions for the schema (mandatory)
+            ├───__init__.py                           # Contains logic to discover sql files (mandatory)
+            └───function.sql                          # function or stored procedure sql file (optional)
 ```
 
 - Top-level folders: Represent individual databases (e.g., database1).
@@ -57,6 +60,7 @@ square_database_structure/
     - ```__init__.py``` (both at the database and schema level).
     - tables.py within each schema.
     - data.py within each schema.
+    - stored_procedures_and_functions package within each schema.
 
 ### Defining Database and Schema Names in ```__init__.py```
 
@@ -124,6 +128,44 @@ data_to_insert = []
 data_to_insert.append(App(app_name="example_app"))
 ```
 
+### Defining function or stored procedure in stored_procedures_and_functions package
+
+- paste this logic in the ```__init__.py``` of this package to discover all sql files.
+
+```python
+from pathlib import Path
+
+directory = Path(__file__).parent
+stored_procedures_and_functions = []
+
+for file_path in directory.iterdir():
+    if file_path.is_file() and file_path.suffix == ".sql":
+        with file_path.open("r") as file:
+            content = file.read()
+            stored_procedures_and_functions.append(content)
+```
+
+- You can keep raw sql files each containing ideally 1 stored procedure or function.
+- The name of the file should ideally correspond to the function / procedure name.
+- This raw sql should be compatible with postgres database.
+
+```sql
+CREATE OR REPLACE FUNCTION add_user(
+    p_username VARCHAR,
+    p_email VARCHAR
+) RETURNS TEXT AS $$
+BEGIN
+    -- Insert a new user into the users table
+    INSERT INTO users (username, email)
+    VALUES (p_username, p_email);
+
+    -- Return a success message
+    RETURN 'User added successfully!';
+END;
+$$ LANGUAGE plpgsql;
+
+```
+
 ### Centralized Definitions in main.py
 
 The main.py file is mandatory and contains a global list that maps databases to schemas and their corresponding table
@@ -181,6 +223,10 @@ create_database_and_tables(db_username, db_password, db_ip, db_port)
 - python>=3.12.0
 
 ## changelog
+
+### v1.3.0
+
+- add support for stored procedures and functions.
 
 ### v1.2.0
 
