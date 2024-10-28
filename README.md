@@ -228,6 +228,10 @@ create_database_and_tables(db_username, db_password, db_ip, db_port)
 
 ## changelog
 
+### v1.3.1
+
+- update license in setup.py
+
 ### v1.3.0
 
 - add support for stored procedures and functions.
