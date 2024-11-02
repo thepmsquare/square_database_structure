@@ -40,18 +40,18 @@ Here’s how you should organize your project when using this module:
 
 ```
 square_database_structure/
-├───main.py                                           # Global definition file (mandatory)
-├───create_database.py                                # Global database creation file (mandatory)
-└───database1/                                        # Each folder corresponds to a separate database
-    ├───__init__.py                                   # Contains the global name for the database (mandatory)
-    └───schema1/                                      # Each subfolder corresponds to a schema within the database
-        ├───__init__.py                               # Contains the global name for the schema (mandatory)
-        ├───data.py                                   # Contains the data for insertion for the schema (mandatory) 
-        ├───enums.py                                  # Defines Enums to be used in the schema (optional)
-        ├───tables.py                                 # Defines tables of the schema (mandatory)
-        └───stored_procedures_and_functions/          # Contains stored procedures and functions for the schema (mandatory)
-            ├───__init__.py                           # Contains logic to discover sql files (mandatory)
-            └───function.sql                          # function or stored procedure sql file (optional)
+├───main.py                                       # Global definition file (mandatory)
+├───create_database.py                            # Global database creation file (mandatory)
+└───database1/                                    # Each folder corresponds to a separate database
+    ├───__init__.py                               # Contains the global name for the database (mandatory)
+    └───schema1/                                  # Each subfolder corresponds to a schema within the database
+        ├───__init__.py                           # Contains the global name for the schema (mandatory)
+        ├───data.py                               # Contains the data for insertion for the schema (mandatory) 
+        ├───enums.py                              # Defines Enums to be used in the schema (optional)
+        ├───tables.py                             # Defines tables of the schema (mandatory)
+        └───stored_procedures_and_functions/      # Contains stored procedures and functions for the schema (mandatory)
+            ├───__init__.py                       # Contains logic to discover sql files (mandatory)
+            └───function.sql                      # function or stored procedure sql file (optional)
 ```
 
 - Top-level folders: Represent individual databases (e.g., database1).
