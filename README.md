@@ -226,11 +226,21 @@ create_database_and_tables(db_username, db_password, db_ip, db_port)
 
 - python>=3.12.0
 
+## note
+
+this module is planned to deviate a bit from the SemVer system for version numbers Major.x and x.Minor.x increments will
+denote changes in application logic, while x.x.Patch increments will denote changes in database data or structure.
+
 ## changelog
+
+### v1.3.2
+
+- update to versioning plan.
+- add test app in square->public->app.
 
 ### v1.3.1
 
-- update license in setup.py
+- update license in setup.py.
 
 ### v1.3.0
 
