@@ -25,6 +25,18 @@ from square_database_structure.square.file_storage.stored_procedures_and_functio
 from square_database_structure.square.file_storage.tables import (
     Base as SquareFileStorageBase,
 )
+from square_database_structure.square.greeting import (
+    global_string_schema_name as local_string_square_greeting_schema_name,
+)
+from square_database_structure.square.greeting.data import (
+    data_to_insert as local_list_square_greeting_data_to_insert,
+)
+from square_database_structure.square.greeting.stored_procedures_and_functions import (
+    stored_procedures_and_functions as local_list_square_greeting_stored_procedures_and_functions,
+)
+from square_database_structure.square.greeting.tables import (
+    Base as SquareGreetingBase,
+)
 from square_database_structure.square.public import (
     global_string_schema_name as local_string_square_public_schema_name,
 )
@@ -59,6 +71,12 @@ global_list_create = [
                 "base": SquareAuthenticationBase,
                 "data_to_insert": local_list_square_authentication_data_to_insert,
                 "stored_procedures_and_functions": local_list_square_authentication_stored_procedures_and_functions,
+            },
+            {
+                "schema": local_string_square_greeting_schema_name,
+                "base": SquareGreetingBase,
+                "data_to_insert": local_list_square_greeting_data_to_insert,
+                "stored_procedures_and_functions": local_list_square_greeting_stored_procedures_and_functions,
             },
         ],
     }

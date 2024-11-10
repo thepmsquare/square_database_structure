@@ -233,6 +233,11 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v1.3.3
+
+- add new app raspi_home inside square->public->app.
+- add new schema square->greeting with 1 table Greeting.
+
 ### v1.3.2
 
 - update to versioning plan.
