@@ -233,6 +233,10 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v1.4.0
+
+- add force_recreate_tables optional param to create_database_and_tables
+
 ### v1.3.4
 
 - remove app raspi_home inside square->public->app.
