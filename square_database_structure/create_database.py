@@ -1,7 +1,5 @@
-from typing import Dict, Sequence, Optional
-
 from psycopg2.errors import DuplicateDatabase
-from sqlalchemy import create_engine, inspect, text, Table
+from sqlalchemy import create_engine, inspect, text
 from sqlalchemy.orm import sessionmaker
 
 from square_database_structure.main import global_list_create
@@ -12,10 +10,8 @@ def create_database_and_tables(
     db_password: str,
     db_ip: str,
     db_port: int,
-    force_recreate_tables: Optional[Dict[str, Dict[str, Sequence[Table]]]] = None,
+    drop_if_exists: bool = False,
 ) -> None:
-    if force_recreate_tables is None:
-        force_recreate_tables = {}
     try:
         local_list_create = global_list_create
 
@@ -34,7 +30,17 @@ def create_database_and_tables(
                     )
             except Exception as e:
                 if isinstance(getattr(e, "orig"), DuplicateDatabase):
-                    pass
+                    if drop_if_exists:
+                        with postgres_engine.connect() as postgres_connection:
+                            postgres_connection.execute(text("commit"))
+                            postgres_connection.execute(
+                                text(
+                                    f"DROP DATABASE {local_str_database_name} WITH (FORCE)"
+                                )
+                            )
+                            postgres_connection.execute(
+                                text(f"CREATE DATABASE {local_str_database_name}")
+                            )
                 else:
                     raise
             # ===========================================
@@ -68,28 +74,6 @@ def create_database_and_tables(
 
                     base = local_dict_schema["base"]
                     # Create tables if not exists
-                    if (
-                        local_str_database_name in force_recreate_tables.keys()
-                        and local_str_schema_name
-                        in force_recreate_tables[local_str_database_name].keys()
-                    ):
-                        base.metadata.drop_all(
-                            bind=database_engine,
-                            tables=force_recreate_tables[local_str_database_name][
-                                local_str_schema_name
-                            ],
-                        )
-                        existing_table_names = [
-                            y
-                            for y in existing_table_names
-                            if y
-                            not in [
-                                x.name.__str__()
-                                for x in force_recreate_tables[local_str_database_name][
-                                    local_str_schema_name
-                                ]
-                            ]
-                        ]
                     base.metadata.create_all(database_engine)
                     # ===========================================
                     data_to_insert = local_dict_schema["data_to_insert"]

@@ -233,9 +233,13 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.0.0
+
+- replace force_recreate_tables optional param to drop_if_exists.
+
 ### v1.4.0
 
-- add force_recreate_tables optional param to create_database_and_tables
+- add force_recreate_tables optional param to create_database_and_tables.
 
 ### v1.3.4
 
