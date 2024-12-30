@@ -31,7 +31,7 @@ pip install square_database_structure
 ## usage
 
 This module organizes database schemas in a standardized folder structure where each top-level folder represents a
-database, and subfolders within it represent schemas. All mandatory components, such as ```__init__.py``` and tables.py,
+database, and subfolders within it represent schemas. All mandatory components, such as `__init__.py` and tables.py,
 data.py, stored_procedures_and_functions need to follow this structure.
 
 ### Folder Structure
@@ -46,7 +46,7 @@ square_database_structure/
     ├───__init__.py                               # Contains the global name for the database (mandatory)
     └───schema1/                                  # Each subfolder corresponds to a schema within the database
         ├───__init__.py                           # Contains the global name for the schema (mandatory)
-        ├───data.py                               # Contains the data for insertion for the schema (mandatory) 
+        ├───data.py                               # Contains the data for insertion for the schema (mandatory)
         ├───enums.py                              # Defines Enums to be used in the schema (optional)
         ├───tables.py                             # Defines tables of the schema (mandatory)
         └───stored_procedures_and_functions/      # Contains stored procedures and functions for the schema (mandatory)
@@ -57,14 +57,14 @@ square_database_structure/
 - Top-level folders: Represent individual databases (e.g., database1).
 - Subfolders: Represent schemas within each database (e.g., public, schema1).
 - Mandatory files:
-    - ```__init__.py``` (both at the database and schema level).
-    - tables.py within each schema.
-    - data.py within each schema.
-    - stored_procedures_and_functions package within each schema.
+  - `__init__.py` (both at the database and schema level).
+  - tables.py within each schema.
+  - data.py within each schema.
+  - stored_procedures_and_functions package within each schema.
 
-### Defining Database and Schema Names in ```__init__.py```
+### Defining Database and Schema Names in `__init__.py`
 
-Each database and schema folder must contain an ```__init__.py``` file where the database and schema names are defined
+Each database and schema folder must contain an `__init__.py` file where the database and schema names are defined
 as
 global variables.
 
@@ -130,7 +130,7 @@ data_to_insert.append(App(app_name="example_app"))
 
 ### Defining function or stored procedure in stored_procedures_and_functions package
 
-- paste this logic in the ```__init__.py``` of this package to discover all sql files.
+- paste this logic in the `__init__.py` of this package to discover all sql files.
 
 ```python
 from pathlib import Path
@@ -233,6 +233,10 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.1.0
+
+- add testing framework.
+
 ### v2.0.0
 
 - replace force_recreate_tables optional param to drop_if_exists.
@@ -286,7 +290,7 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 ### v1.0.1
 
 - add main.py file to have explicit mapping and ordering for schemas to be created.
-- move database and schema names to ```__init__.py```.
+- move database and schema names to `__init__.py`.
 - add app table in public, change user, remove profile and add user app and remove enums.
 
 ### v1.0.0
