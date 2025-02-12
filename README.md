@@ -57,10 +57,10 @@ square_database_structure/
 - Top-level folders: Represent individual databases (e.g., database1).
 - Subfolders: Represent schemas within each database (e.g., public, schema1).
 - Mandatory files:
-  - `__init__.py` (both at the database and schema level).
-  - tables.py within each schema.
-  - data.py within each schema.
-  - stored_procedures_and_functions package within each schema.
+    - `__init__.py` (both at the database and schema level).
+    - tables.py within each schema.
+    - data.py within each schema.
+    - stored_procedures_and_functions package within each schema.
 
 ### Defining Database and Schema Names in `__init__.py`
 
@@ -232,6 +232,10 @@ this module is planned to deviate a bit from the SemVer system for version numbe
 denote changes in application logic, while x.x.Patch increments will denote changes in database data or structure.
 
 ## changelog
+
+### v2.2.0
+
+- add test_create_database_and_tables.
 
 ### v2.1.0
 

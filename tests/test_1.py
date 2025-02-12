@@ -1,3 +1,4 @@
+from square_database_structure import create_database_and_tables
 from square_database_structure.main import global_list_create
 
 
@@ -21,3 +22,21 @@ def test_global_list_create():
             assert "stored_procedures_and_functions" in schema
             assert isinstance(schema["stored_procedures_and_functions"], list)
             # todo: assert type here
+
+
+def test_create_database_and_tables():
+    db_username = "postgres"
+    db_password = "testing"
+    db_ip = "raspi.thepmsquare.com"
+    db_port = 15432
+
+    assert (
+        create_database_and_tables(
+            db_username=db_username,
+            db_password=db_password,
+            db_ip=db_ip,
+            db_port=db_port,
+            drop_if_exists=True,
+        )
+        is None
+    )
