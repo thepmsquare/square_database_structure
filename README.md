@@ -233,6 +233,10 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.3.0
+
+- remove hardcoded testing database creds from pytest.
+
 ### v2.2.0
 
 - add test_create_database_and_tables.

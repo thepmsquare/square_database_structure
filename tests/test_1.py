@@ -24,11 +24,11 @@ def test_global_list_create():
             # todo: assert type here
 
 
-def test_create_database_and_tables():
-    db_username = "postgres"
-    db_password = "testing"
-    db_ip = "raspi.thepmsquare.com"
-    db_port = 15432
+def test_create_database_and_tables(db_credentials):
+    db_username = db_credentials["user"]
+    db_password = db_credentials["password"]
+    db_ip = db_credentials["host"]
+    db_port = db_credentials["port"]
 
     assert (
         create_database_and_tables(

@@ -24,4 +24,5 @@ jobs:
           pip install .
 
       - name: Run tests
-        run: pytest
+        run: pytest --db-host=${{secrets.db_host}} --db-port=${{secrets.db_port}} --db-user=${{secrets.db_user}} --db-password=${{secrets.db_password}}
+
