@@ -233,6 +233,13 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.3.1
+
+- square
+    - authentication
+        - remove user_credential_username from UserCredential table.
+        - add UserProfile table.
+
 ### v2.3.0
 
 - remove hardcoded testing database creds from pytest.
