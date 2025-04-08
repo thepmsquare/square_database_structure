@@ -48,8 +48,8 @@ def fixture_create_database_and_tables(db_credentials):
     from sqlalchemy import text, create_engine
 
     local_str_postgres_url = (
-        f"postgresql://{db_credentials["user"]}:{db_credentials["password"]}@"
-        f"{db_credentials["host"]}:{str(db_credentials["port"])}/"
+        f"postgresql://{db_credentials['user']}:{db_credentials['password']}@"
+        f"{db_credentials['host']}:{str(db_credentials['port'])}/"
     )
     postgres_engine = create_engine(local_str_postgres_url)
     with postgres_engine.connect() as postgres_connection:
