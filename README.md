@@ -233,6 +233,11 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.4.0
+
+- testing
+    - add fixture_create_database_and_tables for cleanup.
+
 ### v2.3.1
 
 - square

@@ -24,7 +24,7 @@ def test_global_list_create():
             # todo: assert type here
 
 
-def test_create_database_and_tables(db_credentials):
+def test_create_database_and_tables(db_credentials, fixture_create_database_and_tables):
     db_username = db_credentials["user"]
     db_password = db_credentials["password"]
     db_ip = db_credentials["host"]
