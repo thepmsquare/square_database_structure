@@ -56,5 +56,5 @@ def fixture_create_database_and_tables(db_credentials):
         postgres_connection.execute(text("commit"))
         for database in global_list_create:
             postgres_connection.execute(
-                text(f"DROP DATABASE {database["database"]} WITH (FORCE)")
+                text(f"DROP DATABASE {database['database']} WITH (FORCE)")
             )
