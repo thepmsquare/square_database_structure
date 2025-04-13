@@ -233,6 +233,14 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.5.0
+
+- testing
+    - remove conftest file and all fixtures.
+    - remove test_create_database_and_tables.
+    - modify pytest workflow.
+    - rename test file.
+
 ### v2.4.0
 
 - testing

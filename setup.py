@@ -4,7 +4,7 @@ package_name = "square_database_structure"
 
 setup(
     name=package_name,
-    version="2.4.0",
+    version="2.5.0",
     packages=find_packages(),
     package_data={
         package_name: ["**/**/stored_procedures_and_functions/*.sql"],
