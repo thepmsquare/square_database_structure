@@ -1,10 +1,8 @@
 from sqlalchemy import (
-    Boolean,
     Column,
     DateTime,
     Integer,
     String,
-    text,
     MetaData,
     ForeignKey,
 )
@@ -40,7 +38,3 @@ class File(Base):
         ForeignKey(App.app_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=True,
     )
-    file_is_deleted = Column(
-        Boolean, nullable=False, index=True, server_default=text("false")
-    )
-    file_date_deleted = Column(DateTime(timezone=True), nullable=True)

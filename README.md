@@ -233,6 +233,12 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.5.1
+
+- square
+    - file_storage
+        - remove file_is_deleted and file_date_deleted from File table.
+
 ### v2.5.0
 
 - testing

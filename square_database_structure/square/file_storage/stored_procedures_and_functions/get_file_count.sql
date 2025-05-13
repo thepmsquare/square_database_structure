@@ -4,8 +4,7 @@ DECLARE
     file_count INTEGER;
 BEGIN
     SELECT COUNT(*) INTO file_count
-    FROM file
-    WHERE file_is_deleted = false;
+    FROM file;
 
     RETURN file_count;
 END;
