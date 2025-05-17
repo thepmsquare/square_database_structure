@@ -7,12 +7,15 @@ from sqlalchemy import (
     String,
     ForeignKey,
     Enum,
+    UniqueConstraint,
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
 
 from square_database_structure.square.authentication import global_string_schema_name
-from square_database_structure.square.authentication.enums import UserStatusEnum
+from square_database_structure.square.authentication.enums import (
+    RecoveryMethodEnum,
+)
 from square_database_structure.square.file_storage.tables import File
 from square_database_structure.square.public.tables import App
 
@@ -28,11 +31,6 @@ class User(Base):
         nullable=False,
         unique=True,
         server_default=text("gen_random_uuid()"),
-    )
-    user_status = Column(
-        Enum(UserStatusEnum, schema=global_string_schema_name),
-        nullable=False,
-        server_default=UserStatusEnum.ACTIVE.value,
     )
 
 
@@ -134,3 +132,27 @@ class UserProfile(Base):
         default=None,
     )
     user_profile_username = Column(String, nullable=False, unique=True, index=True)
+
+
+class UserRecoveryMethod(Base):
+    __tablename__ = "user_recovery_method"
+
+    user_recovery_method_id = Column(
+        Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    user_recovery_method_name = Column(
+        Enum(RecoveryMethodEnum, schema=global_string_schema_name),
+        nullable=False,
+    )
+    __table_args__ = (
+        UniqueConstraint(
+            "user_id",
+            "user_recovery_method_name",
+            name="uq_user_id_user_recovery_method",
+        ),
+    )

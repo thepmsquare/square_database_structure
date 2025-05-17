@@ -233,6 +233,14 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.5.2
+
+- square
+    - authentication
+        - remove user_status enum and column from User.
+        - add RecoveryMethodEnum.
+        - add UserRecoveryMethod table.
+
 ### v2.5.1
 
 - square
