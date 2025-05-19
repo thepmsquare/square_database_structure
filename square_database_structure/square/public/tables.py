@@ -12,7 +12,7 @@ class Test(Base):
     test_id = Column(
         Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
     )
-    test_text = Column(String, nullable=False)
+    test_text = Column(String, nullable=False, unique=True)
 
 
 class App(Base):
