@@ -233,6 +233,12 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.5.4 (inprogress)
+
+- square
+    - authentication
+        - add UserRecoveryMethodDetailCode.
+
 ### v2.5.3
 
 - square

@@ -8,6 +8,7 @@ from sqlalchemy import (
     ForeignKey,
     Enum,
     UniqueConstraint,
+    func,
 )
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
@@ -155,4 +156,31 @@ class UserRecoveryMethod(Base):
             "user_recovery_method_name",
             name="uq_user_id_user_recovery_method",
         ),
+    )
+
+
+class UserRecoveryMethodDetailCode(Base):
+    __tablename__ = "user_recovery_method_detail_code"
+
+    user_recovery_method_detail_code_id = Column(
+        Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    user_recovery_method_detail_code_hash = Column(
+        String,
+        unique=True,
+        nullable=False,
+    )
+    user_recovery_method_detail_code_created_at = Column(
+        DateTime(timezone=True),
+        nullable=False,
+        server_default=func.now(),
+    )
+    user_recovery_method_detail_code_used_at = Column(
+        DateTime(timezone=True),
+        nullable=True,
     )
