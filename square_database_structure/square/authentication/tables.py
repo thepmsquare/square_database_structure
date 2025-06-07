@@ -116,6 +116,11 @@ class UserProfile(Base):
         unique=True,
         default=None,
     )
+    user_profile_email_verified = Column(
+        DateTime(timezone=True),
+        nullable=True,
+        default=None,
+    )
     user_profile_phone_number = Column(
         String,
         nullable=True,

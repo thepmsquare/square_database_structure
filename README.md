@@ -238,6 +238,7 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 - square
     - authentication
         - add UserRecoveryMethodDetailCode.
+        - add user_profile_email_verified in UserProfile table.
 
 ### v2.5.3
 
