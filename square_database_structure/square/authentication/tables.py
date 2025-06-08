@@ -16,6 +16,7 @@ from sqlalchemy.orm import declarative_base
 from square_database_structure.square.authentication import global_string_schema_name
 from square_database_structure.square.authentication.enums import (
     RecoveryMethodEnum,
+    VerificationCodeTypeEnum,
 )
 from square_database_structure.square.file_storage.tables import File
 from square_database_structure.square.public.tables import App
@@ -164,10 +165,10 @@ class UserRecoveryMethod(Base):
     )
 
 
-class UserRecoveryMethodDetailCode(Base):
-    __tablename__ = "user_recovery_method_detail_code"
+class UserVerificationCode(Base):
+    __tablename__ = "user_verification_code"
 
-    user_recovery_method_detail_code_id = Column(
+    user_verification_code_id = Column(
         Integer, primary_key=True, unique=True, nullable=False, autoincrement=True
     )
     user_id = Column(
@@ -175,17 +176,25 @@ class UserRecoveryMethodDetailCode(Base):
         ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
         nullable=False,
     )
-    user_recovery_method_detail_code_hash = Column(
+    user_verification_code_type = Column(
+        Enum(VerificationCodeTypeEnum, schema=global_string_schema_name),
+        nullable=False,
+    )
+    user_verification_code_hash = Column(
         String,
         unique=True,
         nullable=False,
     )
-    user_recovery_method_detail_code_created_at = Column(
+    user_verification_code_created_at = Column(
         DateTime(timezone=True),
         nullable=False,
         server_default=func.now(),
     )
-    user_recovery_method_detail_code_used_at = Column(
+    user_verification_code_expires_at = Column(
+        DateTime(timezone=True),
+        nullable=False,
+    )
+    user_verification_code_used_at = Column(
         DateTime(timezone=True),
         nullable=True,
     )
