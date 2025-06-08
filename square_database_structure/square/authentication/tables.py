@@ -17,6 +17,7 @@ from square_database_structure.square.authentication import global_string_schema
 from square_database_structure.square.authentication.enums import (
     RecoveryMethodEnum,
     VerificationCodeTypeEnum,
+    AuthProviderEnum,
 )
 from square_database_structure.square.file_storage.tables import File
 from square_database_structure.square.public.tables import App
@@ -33,6 +34,32 @@ class User(Base):
         nullable=False,
         unique=True,
         server_default=text("gen_random_uuid()"),
+    )
+    user_username = Column(String, nullable=False, unique=True, index=True)
+
+
+class UserAuthProvider(Base):
+    __tablename__ = "user_auth_provider"
+
+    user_auth_provider_id = Column(
+        Integer, primary_key=True, nullable=False, unique=True, autoincrement=True
+    )
+    user_id = Column(
+        UUID,
+        ForeignKey(User.user_id, ondelete="CASCADE", onupdate="CASCADE"),
+        nullable=False,
+    )
+    auth_provider = Column(
+        Enum(AuthProviderEnum, schema=global_string_schema_name),
+        nullable=False,
+    )
+    auth_provider_user_id = Column(String, nullable=True)
+    __table_args__ = (
+        UniqueConstraint(
+            "user_id",
+            "auth_provider",
+            name="uq_user_id_auth_provider",
+        ),
     )
 
 
@@ -138,7 +165,6 @@ class UserProfile(Base):
         nullable=True,
         default=None,
     )
-    user_profile_username = Column(String, nullable=False, unique=True, index=True)
 
 
 class UserRecoveryMethod(Base):

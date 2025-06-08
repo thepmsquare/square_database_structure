@@ -233,13 +233,16 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
-### v2.5.4 (inprogress)
+### v2.5.4
 
 - square
     - authentication
         - add UserVerificationCode.
         - add user_profile_email_verified in UserProfile table.
         - add VerificationCodeTypeEnum.
+        - add AuthProviderEnum.
+        - add UserAuthProvider.
+        - move username from UserProfile to User.
     - email
         - new schema.
         - add EmailLog table.
