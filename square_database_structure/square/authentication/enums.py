@@ -3,10 +3,10 @@ from enum import Enum
 
 class RecoveryMethodEnum(Enum):
     EMAIL = "EMAIL"
-    CODE = "CODE"
+    BACKUP_CODE = "BACKUP_CODE"
 
 
 class VerificationCodeTypeEnum(Enum):
-    VerifyEmail = "VERIFY_EMAIL"
-    RecoveryMethodEmail = "RECOVERY_METHOD_EMAIL"
-    RecoveryMethodCode = "RECOVERY_METHOD_CODE"
+    EMAIL_VERIFICATION = "EMAIL_VERIFICATION"
+    EMAIL_RECOVERY = "EMAIL_RECOVERY"
+    BACKUP_CODE_RECOVERY = "BACKUP_CODE_RECOVERY"
