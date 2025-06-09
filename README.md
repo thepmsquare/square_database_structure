@@ -233,6 +233,12 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.5.5
+
+- square
+    - email
+        - fix schema name import.
+
 ### v2.5.4
 
 - square

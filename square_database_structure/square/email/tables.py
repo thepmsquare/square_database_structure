@@ -11,8 +11,8 @@ from sqlalchemy import (
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import declarative_base
 
-from square_database_structure.square.authentication import global_string_schema_name
 from square_database_structure.square.authentication.tables import User
+from square_database_structure.square.email import global_string_schema_name
 from square_database_structure.square.email.enums import EmailTypeEnum, EmailStatusEnum
 
 Base = declarative_base(metadata=MetaData(schema=global_string_schema_name))
