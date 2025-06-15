@@ -149,10 +149,14 @@ class UserProfile(Base):
         nullable=True,
         default=None,
     )
+    user_profile_phone_number_country_code = Column(
+        String,
+        nullable=True,
+        default=None,
+    )
     user_profile_phone_number = Column(
         String,
         nullable=True,
-        unique=True,
         default=None,
     )
     user_profile_first_name = Column(
@@ -164,6 +168,13 @@ class UserProfile(Base):
         String,
         nullable=True,
         default=None,
+    )
+    __table_args__ = (
+        UniqueConstraint(
+            "user_profile_phone_number_country_code",
+            "user_profile_phone_number",
+            name="uq_user_profile_phone_number",
+        ),
     )
 
 

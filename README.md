@@ -233,6 +233,13 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.5.6
+
+- square
+    - authentication
+        - add user_profile_phone_number_country_code in UserProfile table.
+        - update unique constraint for phone number to account for user_profile_phone_number_country_code.
+
 ### v2.5.5
 
 - square
