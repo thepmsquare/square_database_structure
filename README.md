@@ -233,6 +233,12 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
+### v2.5.7
+
+- square
+    - authentication
+        - make user_verification_code_expires_at nullable in UserVerificationCode table.
+
 ### v2.5.6
 
 - square

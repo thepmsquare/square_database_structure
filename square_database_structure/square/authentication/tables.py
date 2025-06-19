@@ -229,7 +229,7 @@ class UserVerificationCode(Base):
     )
     user_verification_code_expires_at = Column(
         DateTime(timezone=True),
-        nullable=False,
+        nullable=True,
     )
     user_verification_code_used_at = Column(
         DateTime(timezone=True),
