@@ -233,7 +233,7 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
-### v2.5.8
+### v2.5.8 (in progress)
 
 - square
     - public
