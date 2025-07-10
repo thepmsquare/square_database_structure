@@ -239,7 +239,6 @@ denote changes in application logic, while x.x.Patch increments will denote chan
     - public
         - add more datatypes / columns in test table.
 
-
 ### v2.5.7
 
 - square

@@ -1,4 +1,3 @@
-from sqlalchemy.orm import declarative_base
 from sqlalchemy import (
     Column,
     Integer,
@@ -9,8 +8,9 @@ from sqlalchemy import (
     JSON,
     LargeBinary,
     Enum,
-    MetaData
+    MetaData,
 )
+from sqlalchemy.orm import declarative_base
 
 from square_database_structure.square.public import global_string_schema_name
 from square_database_structure.square.public.enums import TestEnumEnum
@@ -31,6 +31,7 @@ class Test(Base):
     test_float = Column(Float, nullable=True)
     test_json = Column(JSON, nullable=True)
     test_blob = Column(LargeBinary, nullable=True)
+
 
 class App(Base):
     __tablename__ = "app"
