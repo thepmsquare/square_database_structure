@@ -233,11 +233,12 @@ denote changes in application logic, while x.x.Patch increments will denote chan
 
 ## changelog
 
-### v2.5.8 (in progress)
+### v2.5.8
 
 - square
     - public
         - add more datatypes / columns in test table.
+        - in test table convert test_text to nullable.
 
 ### v2.5.7
 
