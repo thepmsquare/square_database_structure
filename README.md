@@ -1,6 +1,6 @@
 # square_database_structure
 
-> 📌 versioning: see [changelog.md](./changelog.md) for notes on how version numbers are managed.
+> 📌 versioning: see [CHANGELOG.md](./changelog.md).
 
 ## about
 
