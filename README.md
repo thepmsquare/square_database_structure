@@ -6,7 +6,7 @@
 
 python module to define postgresql database schemas using sqlalchemy.
 
-# goals
+## goals
 
 - clear database → schema → table hierarchy
 - reusable (template) across multiple projects
