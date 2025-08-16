@@ -21,7 +21,7 @@ setup(
             "pytest>=8.0.0",
         ],
     },
-    author="Parth Mangtani",
+    author="Parth Mukesh Mangtani",
     author_email="thepmsquare@gmail.com",
     description="database scheme for my personal server.",
     long_description=open("README.md", "r", encoding="utf-8").read(),
