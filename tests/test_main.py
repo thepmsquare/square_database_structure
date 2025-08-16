@@ -14,10 +14,7 @@ def test_global_list_create():
             assert "schema" in schema
             assert isinstance(schema["schema"], str)
             assert "base" in schema
-            # todo: assert type here
             assert "data_to_insert" in schema
             assert isinstance(schema["data_to_insert"], list)
-            # todo: assert type here
             assert "stored_procedures_and_functions" in schema
             assert isinstance(schema["stored_procedures_and_functions"], list)
-            # todo: assert type here
