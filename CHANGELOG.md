@@ -5,6 +5,10 @@
 > - **Major.x** and **x.Minor.x** increments → changes in application logic
 > - **x.x.Patch** increments → changes in database data or structure
 
+## v2.7.0
+
+- remove setup.py and switch to pyproject.toml.
+
 ## v2.6.0
 
 - docs
