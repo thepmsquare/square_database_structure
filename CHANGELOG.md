@@ -5,6 +5,12 @@
 > - **Major.x** and **x.Minor.x** increments → changes in application logic
 > - **x.x.Patch** increments → changes in database data or structure
 
+## v2.8.0
+
+- switch build-system to uv.
+- update pytest github action.
+- update pypi publish github action.
+
 ## v2.7.0
 
 - remove setup.py and switch to pyproject.toml.

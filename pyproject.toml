@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["uv-build"]
+build-backend = "uv_build"
 
 [project]
 name = "square_database_structure"
-version = "2.7.0"
+version = "2.8.0"
 description = "database scheme for my personal server."
 readme = "README.md"
 readme-content-type = "text/markdown"
@@ -32,6 +32,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["square_database_structure"]
-include = ["square_database_structure/**/stored_procedures_and_functions/*.sql"]
+[tool.uv.build-backend]
+module-name = "square_database_structure"
+module-root = ""
+source-include = ["square_database_structure/**/stored_procedures_and_functions/*.sql"]
